@@ -1,0 +1,22 @@
+##########################################################################################################################################
+Write an efficient algorithm that searches for a value target in an m x n integer matrix matrix. This matrix has the following properties:
+
+- Integers in each row are sorted from left to right.
+- The first integer of each row is greater than the last integer of the previous row.
+##########################################################################################################################################
+
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        isFound = False
+        for row in matrix:
+            min, max = 0, len(row) - 1
+            while min <= max:
+                mid = min + ((max-min)//2)
+                if row[mid] > target:
+                    max = mid - 1
+                elif row[mid] < target:
+                    min = mid + 1
+                else:
+                    isFound = True
+                    break
+        return isFound
